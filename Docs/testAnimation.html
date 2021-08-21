@@ -1,0 +1,77 @@
+<!-- Modified from W3 Schools Tutorial -->
+<!-- https://www.w3schools.com/howto/howto_js_animate.asp -->
+<!-- Saved at -->
+<!-- https://www.w3schools.com/code/tryit.asp?filename=GTO043O6JUI4 -->
+<!DOCTYPE html>
+<html>
+<style>
+#myContainer {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: yellow;
+}
+#myAnimation {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+}
+</style>
+<body>
+
+<p>
+<button onclick="myMove()">Click Me</button> 
+</p>
+
+<div id ="myContainer">
+<div id ="myAnimation"></div>
+</div>
+
+<script>
+var id = null;
+function myMove() {
+  var elem = document.getElementById("myAnimation");   
+  var pos = 0;
+  clearInterval(id);
+  id = setInterval(frame, 20);
+  function frame() {
+    if (pos == 420) {
+      clearInterval(id);
+    } else {
+      pos++; 
+      var unit = 5;
+      var step = 70;
+      var dir = Math.floor(pos / step);
+      var round = Math.floor(dir / 4);
+      dir = dir % 4;
+      // console.log(dir);
+      if (round === 1) {
+      	clearInterval(id);
+        id = setInterval(frame, 10);
+      }
+      if (dir === 0) {
+        //elem.style.top = pos + 'px'; 
+        elem.style.left = (pos%step)*unit + 'px';
+      }
+      else if (dir === 1)
+      {
+        elem.style.top = (pos%step)*unit + 'px';
+      }
+        else if (dir === 2)
+      {
+        elem.style.left = (step - pos%step)*unit + 'px';
+      }
+      else if (dir === 3)
+      {
+        elem.style.top = (step - pos%step)*unit + 'px';
+      }
+      //console.log(pos + ": " + pos / step)
+      
+    }
+  }
+}
+</script>
+
+</body>
+</html>
