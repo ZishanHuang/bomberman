@@ -1,0 +1,123 @@
+<!-- Test moving an element on the page and adjust speed -->
+<!DOCTYPE html>
+<html>
+<style>
+#myContainer {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: yellow;
+}
+#myAnimation {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+}
+</style>
+<body>
+
+<p>
+<button onclick="start()">Start</button>
+<spar id="speed">Speed: 1</spar>
+<button onclick="speedUp()">Speed +</button> 
+<button onclick="speedDown()">Speed -</button> 
+</p>
+
+<div id ="myContainer">
+<div id ="myAnimation"></div>
+</div>
+
+<script>
+var id = null;
+var elem = document.getElementById("myAnimation");   
+
+var tick = 0;
+// var limit = 6000; // 20 min, 200ms intervals
+var limit = 500;
+
+var x = 0;
+var y = 0;
+
+var speed = 1;
+var unit = 5;
+
+var keys = [37, 38, 39, 40];
+var keyStatus = {};
+
+function keyUp(e) {
+    keyStatus[e.keyCode] = false;
+    console.log(e.keyCode + ' up');
+}
+
+function keyDown(e) {
+    keyStatus[e.keyCode] = true;
+    console.log(e.keyCode + ' down');
+}
+
+function speedUp() {
+    if (speed < 5) speed += 0.25;
+    updateSpeed();
+}
+
+function speedDown() {
+    if (speed > 1) speed -= 0.25;
+    updateSpeed();
+}
+
+function updateSpeed() {
+    document.getElementById("speed").textContent = "Speed: " + speed;
+}
+
+function frame() {
+    if (tick == limit) {
+        console.log('exit interval ' + id);
+        clearInterval(id);
+    } else {
+        tick++;
+        for(let key of keys) {
+            if (!keyStatus[key]) continue;
+            // console.log(key);
+            switch (key) {
+                case 37:
+                    x -= speed*unit;
+                    break;
+                case 38:
+                    y -= speed*unit;
+                    break;
+                case 39:
+                    x += speed*unit;
+                    break;
+                case 40:
+                    y += speed*unit;
+                    break;
+                default:
+                    break;
+            }
+        }
+        x = x < 0 ? 0 : x;
+        y = y < 0 ? 0 : y;
+        //console.log(x + ', ' + y);
+        elem.style.left = x + 'px';
+        elem.style.top = y + 'px';
+    }
+}
+
+function start() {
+    var elem = document.getElementById("myAnimation");
+    elem.style.top = '0px';
+    elem.style.left = '0px';
+    x = 0;
+    y = 0;
+
+    tick = 0;
+    id = setInterval(frame, 50);
+    console.log('start interval ' + id);
+}
+
+window.addEventListener('keydown', keyDown);
+window.addEventListener('keyup', keyUp);
+</script>
+
+</body>
+</html>

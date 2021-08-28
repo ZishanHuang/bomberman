@@ -33,3 +33,10 @@ At each epoch, request is posted to server with the current location and action 
 key down - start
 key hold - start + current time * speed?
 key up
+
+Init player state:
+- start position
+
+Player action:
+- Movement
+- Place bomb / use tool

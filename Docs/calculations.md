@@ -9,3 +9,4 @@ Time interval needed to update frontend based on Frame per Second:
 - 20 fps = 1000ms / 20 ~= 50ms per frame
 - 10 fps = 1000ms / 10 ~= 100ms per frame
 
+Based on tests, 30ms of interval watching seems to provide smooth viewing experience.

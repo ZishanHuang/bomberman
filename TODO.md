@@ -18,9 +18,11 @@
         - [ ] Game resource size
 - [ ] Tech Stack
     - [ ] Frontend
-        - [ ] React or Vue
+        - [ ] React or Vue framework, or pure js
+        - [ ] three.js or WebGL for rendering
     - [ ] Backend
         - [ ] Node, Python, Go, Java or anything else? Seems like Go is better for low latency than Node?
+        - [ ] Socket.io, websockets, etc for socket connection
     - [ ] Database?
         - [ ] SQL or NoSQL?
     - [ ] Deployment
