@@ -8,6 +8,7 @@ import SocketIO from 'socket.io-client'
 const host = process.env.HOST || 'http://localhost';
 const port = process.env.PORT || 8080;
 const socketUrl = `${host}:${port}`;
+console.log(socketUrl);
 
 Vue.config.productionTip = false
 Vue.use(new VueSocketIO({

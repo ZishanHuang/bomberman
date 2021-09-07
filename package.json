@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve src/client/main.js",
     "build": "vue-cli-service build src/client/main.js",
     "lint": "vue-cli-service lint src/client/main.js",
+    "postinstall": "npm run build",
     "start": "node src/server/server.js"
   },
   "dependencies": {
