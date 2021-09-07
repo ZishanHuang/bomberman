@@ -2,11 +2,10 @@
   <div class="board">
     <h1>{{ msg }}</h1>
     <p>Time: {{time}}</p>
-    <button v-on:click='sendData'>Start</button>
-    <!-- <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul> -->
+    <button v-on:click='sendData'>Send Data</button>
+    <ul>
+      <li v-for="(c, index) in chat" :key="`chat-${index}`">{{c}}</li>
+    </ul>
   </div>
 </template>
 
@@ -19,6 +18,9 @@ export default {
     time(data) {
       this.time = data;
       console.log('time event filed from server: time is ' + data);
+    },
+    send(data) {
+        this.chat = data;
     }
   },
   name: 'Board',
@@ -28,7 +30,8 @@ export default {
   },
   data() {
       return {
-          time: ''
+          time: '',
+          chat: []
       };
   },
   mounted() {
@@ -51,8 +54,7 @@ export default {
   methods: {
     sendData() {
         console.log('send start data')
-        // this.$socket.emit('start', {start: true});
-        this.$socket.client.emit('start', {start: true});
+        this.$socket.emit('send', {time: new Date().toTimeString()});
     }
   }
 //   watch: {
